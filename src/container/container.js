@@ -1,6 +1,7 @@
 import React from "react";
 import ProjectContainer from "../components/projects/projectsContainer";
-import IssueContainer from '../components/issues/issueContainer'
+import IssueContainer from "../components/issues/issueContainer";
+import Header from "../components/header/header";
 class Container extends React.Component {
   state = { project: "node" };
   selectProject = project => {
@@ -14,7 +15,11 @@ class Container extends React.Component {
   render() {
     return (
       <>
-        <ProjectContainer selectProject={this.selectProject} />
+        <Header />
+        <ProjectContainer
+          selectProject={this.selectProject}
+          selectedProject={this.state.project}
+        />
         <IssueContainer project={this.state.project} />
       </>
     );

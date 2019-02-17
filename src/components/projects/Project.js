@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-
+import classNames from 'classnames'
 class Project extends Component {
   render() {
-    const { project, selectProject } = this.props;
+    const { project, selectProject, selectedProject } = this.props;
+    let buttonClass = classNames({
+      button: true,
+      active: project.search === selectedProject
+    });
     return (
       <>
-        <div className="button" onClick={() => selectProject(project.name)}>
+        <div className={buttonClass} onClick={() => selectProject(project.search)}>
           {project.name}
         </div>
       </>

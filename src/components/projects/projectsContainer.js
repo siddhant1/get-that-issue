@@ -13,6 +13,7 @@ class ProjectsContainer extends Component {
               <Project
                 project={project}
                 selectProject={this.props.selectProject}
+                selectedProject={this.props.selectedProject}
               />
             ))}
         </div>

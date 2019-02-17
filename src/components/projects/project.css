@@ -39,6 +39,11 @@ a {
     z-index: -1;
 }
 
+.button.active {
+    background-color: #39bda7;
+    color: #fff;
+}
+
 .button:after {
     content: "";
     position: absolute;

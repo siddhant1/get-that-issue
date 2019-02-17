@@ -1,0 +1,18 @@
+.issue {
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: box-shadow 500ms;
+    transition: background-color  400ms;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+.issue:hover {
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.2);
+    background-color: #39bda7;
+    color: #fff
+}
