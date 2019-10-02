@@ -16,3 +16,16 @@
     background-color: #39bda7;
     color: #fff
 }
+.load-more-btn{
+    background-color: #39bda7;
+    color: #fff;
+    cursor: pointer;
+    margin: 8px;
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+}
