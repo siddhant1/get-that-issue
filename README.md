@@ -5,6 +5,13 @@
 - Git
 - Node > 8.10.0
 
+## Add you project
+1. Go to src/data/projects.js.
+2. Add your project's name , and search query (good first issue/first timers etc)
+3. Make a pull request
+
+# How to Contribute
+
 ## Step 1: Fork this repository
 
 Fork the project by clicking the Fork button on the top-right hand corner. Wait while the repository is being forked. All done!
