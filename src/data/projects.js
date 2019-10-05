@@ -109,7 +109,7 @@ const projects = [
   {
     search: "docz",
     name: "Docz",
-    q: 'repo:pedronauck/docz is:issue is:open label:"good first issue"'
+    q: 'repo:doczjs/docz is:issue is:open label:"good first issue"'
   },
   {
     search: "react-navigation",
