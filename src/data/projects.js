@@ -116,6 +116,22 @@ const projects = [
     name: "React Navigation",
     q:
       'repo:react-navigation/react-navigation is:issue is:open label:"good first issue"'
+  },
+  {
+    search: "wemake-python-styleguide",
+    name: "wemake-python-styleguide",
+    q:
+      'repo:wemake-services/wemake-python-styleguide is:issue is:open label:"level starter"'
+  },
+  {
+    search: "hacktoberfest",
+    name: "Hacktoberfest",
+    q: 'is:issue is:open label:"hacktoberfest"'
+  },
+  {
+    search: "I'm Feeling Lucky",
+    name: "I'm Feeling Lucky 🎲",
+    q: 'is:issue is:open label:"good first issue"'
   }
 ];
 export default projects;
