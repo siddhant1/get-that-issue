@@ -11,6 +11,7 @@ class ProjectsContainer extends Component {
           {projects &&
             projects.map(project => (
               <Project
+                key={project.name}
                 project={project}
                 selectProject={this.props.selectProject}
                 selectedProject={this.props.selectedProject}
