@@ -50,7 +50,7 @@ class IssueContainer extends React.Component {
           "No Good-First issues Found 😭"
         ) : 
           <>
-          {this.state.showingIssues.map(issue => <Issue issue={issue} />)}
+          {this.state.showingIssues.map(issue => <Issue key={issue.title} issue={issue} />)}
           {offset<issues.length && <button className="load-more-btn" onClick={this.loadMoreIssues}>More</button>}
           </>
         }
