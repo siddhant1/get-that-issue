@@ -1,10 +1,9 @@
 // This helper goes and fetches Good First Issues
 // This module expects a search query which is just a standard GitHub search query. These queries should not include sort or order, since those are defined in the function.
 const octokit = require("@octokit/rest")({
-  timeout: 0, // 0 means no request timeout
-  headers: {
-    accept: "application/vnd.github.v3+json",
-    "user-agent": "octokit/rest.js v1.2.3" // v1.2.3 will be current version
+  userAgent: "octokit/rest.js v1.2.3",
+  request: {
+    timeout: 0
   }
 });
 
@@ -21,24 +20,26 @@ const PAGE = 1; // page_number is 1-based index
 const MAX_PAGE_ALLOWED = 34;
 
 function search(q) {
-  return octokit.search.issues(getSearchParams({ q })).then(({ data }) => {
-    if (data.total_count > data.items.length) {
-      const pageCount = Math.ceil(data.total_count / PER_PAGE);
-      const lastPageAllowed =
-        pageCount > MAX_PAGE_ALLOWED ? MAX_PAGE_ALLOWED : pageCount;
-      // page_number is 1-based index
-      var randomPage =
-        Math.floor(Math.random() * Math.floor(lastPageAllowed)) + 1;
+  return octokit.search
+    .issuesAndPullRequests(getSearchParams({ q }))
+    .then(({ data }) => {
+      if (data.total_count > data.items.length) {
+        const pageCount = Math.ceil(data.total_count / PER_PAGE);
+        const lastPageAllowed =
+          pageCount > MAX_PAGE_ALLOWED ? MAX_PAGE_ALLOWED : pageCount;
+        // page_number is 1-based index
+        var randomPage =
+          Math.floor(Math.random() * Math.floor(lastPageAllowed)) + 1;
 
-      return octokit.search
-        .issues(getSearchParams({ q: q, page: randomPage }))
-        .then(({ data }) => {
-          return transform(data);
-        });
-    } else {
-      return transform(data);
-    }
-  });
+        return octokit.search
+          .issuesAndPullRequests(getSearchParams({ q: q, page: randomPage }))
+          .then(({ data }) => {
+            return transform(data);
+          });
+      } else {
+        return transform(data);
+      }
+    });
 }
 
 function getSearchParams(searchParams) {
