@@ -5,7 +5,7 @@ import Issue from "./Issue";
 import Spinner from "../reusable/Spinner/spinner";
 
 class IssueContainer extends React.Component {
-  state = { issues: [], loading: false, showingIssues: [], offset: 0 };
+  state = { issues: [], loading: false,error:false, showingIssues: [], offset: 0 };
 
   async componentDidMount() {
     this.fetchIssues();
@@ -19,14 +19,22 @@ class IssueContainer extends React.Component {
     this.setState(current => {
       return { ...current, loading: true,offset: 0,showingIssues:[] };
     });
-    let issues = await getIssues(this.props.project);
+    let issues = [];
+    let error= false;
+    try {
+    issues =  await getIssues(this.props.project)
+    error = false;
+    } catch (err){
+      error = true;
+      console.log(err,'error while fetching')
+    }
     let {offset,showingIssues}= this.state;
     while(offset<10 && offset<issues.length){
       showingIssues.push(issues[offset]);
       offset=offset+1;
     }
     this.setState(current => {
-      return { ...current, loading: false, issues, showingIssues, offset };
+      return { ...current, loading: false, error , issues, showingIssues, offset };
     });
   }
   loadMoreIssues=()=>{
@@ -41,12 +49,20 @@ class IssueContainer extends React.Component {
     });
   }
   render() {
-    const {offset,issues} = this.state;
+    const {offset,issues,error,loading} = this.state;
+    if(error){
+        return (
+        <div className='error-message'>
+          Couldn't fetch the issues. Please try again
+        </div>
+        )
+    }
+    if(loading){
+       return <Spinner/>
+    }
     return (
       <div>
-        {this.state.loading ? (
-          <Spinner />
-        ) : this.state.issues.length === 0 ? (
+        {this.state.issues.length === 0 ? (
           "No Good-First issues Found 😭"
         ) : 
           <>

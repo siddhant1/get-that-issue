@@ -35,10 +35,16 @@ function search(q) {
           .issuesAndPullRequests(getSearchParams({ q: q, page: randomPage }))
           .then(({ data }) => {
             return transform(data);
+          })
+          .catch(err => {
+            throw Error(err);
           });
       } else {
         return transform(data);
       }
+    })
+    .catch(err => {
+      throw Error(err);
     });
 }
 
